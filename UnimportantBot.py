@@ -115,6 +115,6 @@ async def coin():
 
 @bot.command()
 async def choke(target):
-    return await bot.say("choke me" + target + "daddy")
+    return await bot.say("choke me " + target + " daddy")
 
 bot.run(token)
