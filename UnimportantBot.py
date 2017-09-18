@@ -113,5 +113,8 @@ async def coin():
     flip = "tails" if n == 0 else "heads"
     return await bot.say("You flipped " + flip + "!")
 
+@bot.command()
+async def choke(target):
+    return await bot.say("choke me" + target + "daddy")
 
 bot.run(token)
