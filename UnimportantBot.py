@@ -4,7 +4,7 @@ import asyncio
 import random
 
 bot = Bot(command_prefix="!")
-token = "MzI5ODc1MzIzMjI1MTEyNTc4.DDY0GA.hMDAqOvYHWCyumWHFoof8xLYCKE"
+token = "TOKEN!"
 sc_entries = []
 votes = []
 
