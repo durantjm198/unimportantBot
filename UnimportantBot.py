@@ -38,6 +38,10 @@ async def troutslap(target):
     return await bot.say("*slaps " + target + " with a trout*")
 
 @bot.command()
+async def choke(target):
+    return await bot.say("choke me" + target + "daddy")
+
+@bot.command()
 async def roll(n):
     return await bot.say(random.randint(1, int(n)))
 
