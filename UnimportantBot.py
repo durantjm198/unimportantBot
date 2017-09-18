@@ -9,6 +9,28 @@ token = os.environ['api_key']
 sc_entries = []
 votes = []
 
+eight_ball_sayings = [
+  "It is certain",
+  "It is decidedly so",
+  "Without a doubt",
+  "Yes, definitely",
+  "You may rely on it",
+  "As I see it, yes",
+  "Most likely",
+  "Outlook good",
+  "Yes",
+  "Signs point to yes",
+  "Reply hazy, try again",
+  "Ask again later",
+  "Better not tell you now",
+  "Cannot predict now",
+  "Consentrate and ask again",
+  "Don\'t count on it",
+  "My reply is no",
+  "My sources say no",
+  "Outlook not so good",
+  "Very doubtful" ]
+
 ############################### SONG CONTEST ###################################
 class SongContestEntry:
     def __init__(self, entry_name, song_title, artist, link, submitter):
@@ -116,5 +138,9 @@ async def coin():
 @bot.command()
 async def choke(target):
     return await bot.say("choke me " + target + " daddy")
+
+@bot.command()
+async def eight_ball():
+    return await bot.say(random.choice(eight_ball_sayings))
 
 bot.run(token)
