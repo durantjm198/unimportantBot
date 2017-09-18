@@ -9,6 +9,7 @@ token = os.environ['api_key']
 sc_entries = []
 votes = []
 
+############################### SONG CONTEST ###################################
 class SongContestEntry:
     def __init__(self, entry_name, song_title, artist, link, submitter):
         self.entry_name = entry_name
@@ -28,37 +29,6 @@ class Vote:
         self.voter = voter
         self.entry_name = entry_name
         self.points = points
-
-@bot.event
-async def on_read():
-    print("Client logged in")
-
-@bot.command()
-async def troutslap(target):
-    return await bot.say("*slaps " + target + " with a trout*")
-
-@bot.command()
-async def choke(target):
-    return await bot.say("choke me" + target + "daddy")
-
-@bot.command()
-async def roll(n):
-    return await bot.say(random.randint(1, int(n)))
-
-@bot.command()
-async def roll_eldritch(n):
-    successes = 0
-    result = ""
-    n = int(n)
-    if n > 1000:
-        return await bot.say("Cthulhu wins.")
-    for i in range(0, n):
-        roll = random.randint(1, 6)
-        result += str(roll) + " "
-        if roll >= 5:
-            successes += 1
-    await bot.say(result)
-    return await bot.say(str(successes) + " successes!")
 
 @bot.command(pass_context = True)
 async def add_entry(ctx, entry_name, song_title, artist, link):
@@ -107,5 +77,44 @@ async def vote(ctx, entry_name, points):
             return await bot.say("Vote received!")
     
     return await bot.say("That's not an entry!")
+
+################################ MISCELLANY ###################################
+
+@bot.event
+async def on_read():
+    print("Client logged in")
+
+@bot.command()
+async def troutslap(target):
+    return await bot.say("*slaps " + target + " with a trout*")
+
+@bot.command()
+async def roll(n):
+    return await bot.say(random.randint(1, int(n)))
+
+@bot.command()
+async def roll_eldritch(n):
+    successes = 0
+    result = ""
+    n = int(n)
+    if n > 1000:
+        return await bot.say("Cthulhu wins.")
+    for i in range(0, n):
+        roll = random.randint(1, 6)
+        result += str(roll) + " "
+        if roll >= 5:
+            successes += 1
+    await bot.say(result)
+    return await bot.say(str(successes) + " successes!")
+
+@bot.command()
+async def coin():
+    n = random.randint(0, 1)
+    flip = "tails" if n == 0 else "heads"
+    return await bot.say("You flipped " + flip + "!")
+
+@bot.command()
+async def choke(target):
+    return await bot.say("choke me" + target + "daddy")
 
 bot.run(token)
