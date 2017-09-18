@@ -2,9 +2,10 @@ import discord
 from discord.ext.commands import Bot
 import asyncio
 import random
+import os
 
 bot = Bot(command_prefix="!")
-token = "TOKEN!"
+token = os.environ['api_key']
 sc_entries = []
 votes = []
 
