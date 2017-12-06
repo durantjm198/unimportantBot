@@ -31,14 +31,6 @@ eight_ball_sayings = [
   "Outlook not so good",
   "Very doubtful" ]
 
-############################## TWITTER IMAGES #################################
-@bot.event
-async def on_message(message):
-  is_tweet = message.content.startswith('https://twitter.com') or \
-             message.content.startswith('https://www.twitter.com')
-  if is_tweet:
-    return await bot.send_message(message.channel, 'That looks like a tweet!')
-
 ################################ MISCELLANY ###################################
 
 @bot.event
@@ -77,5 +69,13 @@ async def coin():
 @bot.command()
 async def choke(target):
     return await bot.say("choke me " + target + " daddy")
+
+############################## TWITTER IMAGES #################################
+@bot.event
+async def on_message(message):
+  is_tweet = message.content.startswith('https://twitter.com') or \
+             message.content.startswith('https://www.twitter.com')
+  if is_tweet:
+    return await bot.send_message(message.channel, 'That looks like a tweet!')
 
 bot.run(token)
