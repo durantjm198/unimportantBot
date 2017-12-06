@@ -9,6 +9,7 @@ token = os.environ['api_key']
 sc_entries = []
 votes = []
 
+<<<<<<< HEAD
 twitter_urls = ['https://twitter.com/', 'https://www.twitter.com/']
 
 eight_ball_sayings = [
@@ -34,6 +35,61 @@ eight_ball_sayings = [
   "Very doubtful" ]
 
 ############################## TWITTER IMAGES #################################
+=======
+############################### SONG CONTEST ###################################
+class SongContestEntry:
+    def __init__(self, entry_name, song_title, artist, link, submitter):
+        self.entry_name = entry_name
+        self.song_title = song_title
+        self.artist = artist
+        self.link = link
+        self.submitted_by = submitter
+        self.points = 0
+        self.voters = []
+
+    def __str__(self):
+        return self.entry_name + ": " + self.artist + " -- " + self.song_title \
+               + " -- " + self.link + " -- " + str(self.points) + " points"
+
+class Vote:
+    def __init__(self, voter, entry_name, points):
+        self.voter = voter
+        self.entry_name = entry_name
+        self.points = points
+
+@bot.command(pass_context = True)
+async def add_entry(ctx, entry_name, song_title, artist, link):
+    this_entry = SongContestEntry(entry_name, song_title,                 \
+                                  artist, link, ctx.message.author)
+    for entry in sc_entries:
+        if entry.entry_name == this_entry.entry_name:
+            return await bot.say("Entry name already taken!")
+        if entry.submitted_by == ctx.message.author:
+            return await bot.say("You already entered "+entry.entry_name + "!")
+    sc_entries.append(this_entry)
+    return await bot.say(entry_name + " added!")
+
+@bot.command()
+async def print_entries():
+    for entry in sc_entries:
+        await bot.say(entry)
+    return
+
+@bot.command(pass_context=True)
+async def vote(ctx, entry_name, points):
+    points = int(points)
+    if points == None:
+        return await bot.say("That's not a number!")
+
+    voter = ctx.message.author
+    vote = Vote(voter, entry_name, points)
+    if points > 10 or points == 9 or points == 7 or points < 1:
+        return await bot.say("Remember the voting system! You can only give 10, 8, 6, 5, 4, 3, 2, or 1 points!")
+    for v in votes:
+        if v.voter == voter and v.points == points:
+            return await bot.say("You already voted for " + v.entry_name + " to receive " + str(points) + " points!")
+    for entry in sc_entries:
+>>>>>>> parent of bf84b8e... 8ball
 
 @bot.event
 async def on_message(message)
@@ -78,9 +134,5 @@ async def coin():
 @bot.command()
 async def choke(target):
     return await bot.say("choke me " + target + " daddy")
-
-@bot.command()
-async def eight_ball():
-    return await bot.say(random.choice(eight_ball_sayings))
 
 bot.run(token)
