@@ -33,7 +33,7 @@ eight_ball_sayings = [
 
 ############################## TWITTER IMAGES #################################
 @bot.event
-async def on_message(message)
+async def on_message(message):
   is_tweet = message.content.startswith('https://twitter.com') or \
              message.content.startswith('https://www.twitter.com')
   if is_tweet:
