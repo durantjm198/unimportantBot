@@ -9,6 +9,8 @@ token = os.environ['api_key']
 sc_entries = []
 votes = []
 
+twitter_urls = ['https://twitter.com/', 'https://www.twitter.com/']
+
 eight_ball_sayings = [
   "It is certain",
   "It is decidedly so",
@@ -35,7 +37,7 @@ eight_ball_sayings = [
 
 @bot.event
 async def on_message(message)
-  if message.content.startswith('https://www.twitter.com/'):
+  if message.content.split('.com/')[0] in twitter_urls:
     return await bot.say('That looks like a tweet!')
 
 ################################ MISCELLANY ###################################
