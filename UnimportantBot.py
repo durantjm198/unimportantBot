@@ -15,15 +15,7 @@ class UnimportantBot(Bot):
       try:
         self.load_extension(extension)
       except Exception as e:
-        print(f'Failed to load extension {extension}.', file=sys.stderr)
+        print('Failed to load extension.', file=sys.stderr)
         traceback.print_exc()
-
-############################## TWITTER IMAGES #################################
-@bot.event
-async def on_message(message):
-  is_tweet = message.content.startswith('https://twitter.com') or \
-             message.content.startswith('https://www.twitter.com')
-  if is_tweet:
-    return await bot.send_message(message.channel, 'That looks like a tweet!')
 
 bot.run(token)
