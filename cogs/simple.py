@@ -70,3 +70,6 @@ class Simple:
             successes += 1
     await ctx.send(result)
     return await ctx.send(str(successes) + " successes!")
+
+def setup(bot):
+    bot.add_cog(Simple(bot))
