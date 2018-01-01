@@ -23,7 +23,7 @@ class Twitter:
 
   def get_image_links(self, message):
     tweet = self.get_tweet(message)
-    return [med.media_url for med in tweet.extended_entities.media]
+    return [med['media_url'] for med in tweet.extended_entities['media']]
 
 def setup(bot):
     bot.add_cog(Twitter(bot))
