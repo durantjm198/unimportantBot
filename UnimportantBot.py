@@ -7,6 +7,7 @@ import config
 
 extensions = (
   'cogs.simple',
+  'cogs.twitter',
 )
 
 class UnimportantBot(Bot):
