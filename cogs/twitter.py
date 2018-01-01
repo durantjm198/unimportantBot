@@ -2,13 +2,14 @@ from discord.ext import commands
 import asyncio
 import discord
 import tweepy
+import config
 
 # Twitter.
 class Twitter:
   def __init__(self, bot):
     self.bot = bot
-    auth = tweepy.OAuthHandler(tw_consumer_key, tw_consumer_secret)
-    auth.set_access_token(tw_access_token, tw_access_token_secret)
+    auth = tweepy.OAuthHandler(bot.tw_consumer_key, bot.tw_consumer_secret)
+    auth.set_access_token(bot.tw_access_token, bot.tw_access_token_secret)
     self.api = tweepy.API(auth)
 
   async def on_message(self, message):
