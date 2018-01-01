@@ -7,8 +7,8 @@ import tweepy
 class Twitter:
   def __init__(self, bot):
     self.bot = bot
-    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-    auth.set_access_token(access_token, access_token_secret)
+    auth = tweepy.OAuthHandler(tw_consumer_key, tw_consumer_secret)
+    auth.set_access_token(tw_access_token, tw_access_token_secret)
     self.api = tweepy.API(auth)
 
   async def on_message(self, message):
