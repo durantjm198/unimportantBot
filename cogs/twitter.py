@@ -20,7 +20,7 @@ class Twitter:
   def get_image_links(self, message):
     url = re.search("twitter.com\/\w+\/status\/\d+", message.content).group()
     id = url.split('/')[-1]
-    return self.api.get_status(id).text
+    return [self.api.get_status(id).text]
 
 def setup(bot):
     bot.add_cog(Twitter(bot))
