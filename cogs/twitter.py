@@ -19,7 +19,7 @@ class Twitter:
 
   def get_tweet(self, message):
     url = re.search("twitter.com\/\w+\/status\/\d+", message.content).group()
-    tweet = self.api.get_status(url.split('/')[-1])
+    return self.api.get_status(url.split('/')[-1])
 
   def get_image_links(self, message):
     tweet = self.get_tweet(message)
