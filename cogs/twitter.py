@@ -17,7 +17,7 @@ class Twitter:
       for link in self.get_image_links(message):
         await self.bot.send_message(message.channel, link)
 
-  def get_tweet(self, message)
+  def get_tweet(self, message):
     url = re.search("twitter.com\/\w+\/status\/\d+", message.content).group()
     tweet = self.api.get_status(url.split('/')[-1])
 
