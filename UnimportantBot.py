@@ -22,7 +22,7 @@ class UnimportantBot(Bot):
     super().run(config.token)
 
     async def process_commands(self, message):
-      ctx = await self.get_context(message, cls=context.Context)
+      ctx = await self.get_context(message)
 
       if ctx.command is None:
         return

@@ -9,15 +9,15 @@ class Simple:
   def __init__(self, bot):
     self.bot = bot
 
-  @commands.command()
+  @commands.command(pass_context=True)
   async def choke(self, ctx, target):
     return await ctx.send("choke me " + target + " daddy")
 
-  @commands.command()
+  @commands.command(pass_context=True)
   async def troutslap(self, ctx, target):
     return await ctx.send("*slaps " + target + " with a trout*")
 
-  @commands.command()
+  @commands.command(pass_context=True)
   async def eight_ball(self, ctx):
     eight_ball_sayings = [
       "It is certain",
@@ -45,18 +45,18 @@ class Simple:
     # TODO: @ the user
     return await ctx.send(rng.choice(eight_ball_sayings))
 
-  @commands.command()
+  @commands.command(pass_context=True)
   async def coin(self, ctx):
     n = random.randint(0, 1)
     flip = "tails" if n == 0 else "heads"
     return await ctx.send("You flipped " + flip + "!")
 
   # TODO: roll 2d20
-  @commands.command()
+  @commands.command(pass_context=True)
   async def roll(self, ctx, n):
     return await ctx.send(random.randint(1, int(n)))
 
-  @commands.command()
+  @commands.command(pass_context=True)
   async def roll_eldritch(self, ctx, n):
     successes = 0
     result = ""
