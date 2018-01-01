@@ -18,6 +18,6 @@ class UnimportantBot(Bot):
       except Exception as e:
         print('Failed to load extension.', file=sys.stderr)
         traceback.print_exc()
-    super().run(token)
+    super().run(config.token)
 
 bot = UnimportantBot()
