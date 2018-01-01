@@ -11,11 +11,11 @@ class Simple:
 
   @commands.command(pass_context=True)
   async def choke(self, ctx, target):
-    return await bot.say("choke me " + target + " daddy")
+    return await self.bot.say("choke me " + target + " daddy")
 
   @commands.command(pass_context=True)
   async def troutslap(self, ctx, target):
-    return await bot.say("*slaps " + target + " with a trout*")
+    return await self.bot.say("*slaps " + target + " with a trout*")
 
   @commands.command(pass_context=True)
   async def eight_ball(self, ctx):
@@ -43,18 +43,18 @@ class Simple:
     ]
 
     # TODO: @ the user
-    return await bot.say(rng.choice(eight_ball_sayings))
+    return await self.bot.say(rng.choice(eight_ball_sayings))
 
   @commands.command(pass_context=True)
   async def coin(self, ctx):
     n = random.randint(0, 1)
     flip = "tails" if n == 0 else "heads"
-    return await bot.say("You flipped " + flip + "!")
+    return await self.bot.say("You flipped " + flip + "!")
 
   # TODO: roll 2d20
   @commands.command(pass_context=True)
   async def roll(self, ctx, n):
-    return await bot.say(random.randint(1, int(n)))
+    return await self.bot.say(random.randint(1, int(n)))
 
   @commands.command(pass_context=True)
   async def roll_eldritch(self, ctx, n):
@@ -69,7 +69,7 @@ class Simple:
         if roll >= 5:
             successes += 1
     await bot.say(result)
-    return await bot.say(str(successes) + " successes!")
+    return await self.bot.say(str(successes) + " successes!")
 
 def setup(bot):
     bot.add_cog(Simple(bot))
