@@ -18,7 +18,7 @@ class Simple:
     return await ctx.send("*slaps " + target + " with a trout*")
 
   @simple.command()
-  async def 8ball(self, ctx):
+  async def eight_ball(self, ctx):
     eight_ball_sayings = [
       "It is certain",
       "It is decidedly so",
