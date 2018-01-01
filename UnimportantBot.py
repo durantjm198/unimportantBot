@@ -1,5 +1,6 @@
 import discord
 from discord.ext.commands import Bot
+from cogs.utils import context
 import asyncio
 import sys
 import traceback
@@ -21,7 +22,7 @@ class UnimportantBot(Bot):
     super().run(config.token)
 
     async def process_commands(self, message):
-      ctx = await self.get_context(message, cls=commands.Context)
+      ctx = await self.get_context(message, cls=context.Context)
 
       if ctx.command is None:
         return
