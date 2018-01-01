@@ -1,7 +1,7 @@
 import discord
 from discord.ext.commands import Bot
 import asyncio
-
+import sys
 import config
 
 extensions = (
