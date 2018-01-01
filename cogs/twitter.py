@@ -12,7 +12,7 @@ class Twitter:
     is_tweet = message.content.startswith('https://twitter.com') or \
              message.content.startswith('https://www.twitter.com')
     if is_tweet:
-      return await bot.send_message(message.channel, 'That looks like a tweet!')
+      return await self.bot.send_message(message.channel, 'That looks like a tweet!')
 
 def setup(bot):
     bot.add_cog(Twitter(bot))
