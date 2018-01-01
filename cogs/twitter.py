@@ -2,7 +2,7 @@ from discord.ext import commands
 import asyncio
 import discord
 import tweepy
-import config
+import re
 
 # Twitter.
 class Twitter:
@@ -13,13 +13,14 @@ class Twitter:
     self.api = tweepy.API(auth)
 
   async def on_message(self, message):
-    is_tweet = message.content.startswith('https://twitter.com') or \
-             message.content.startswith('https://www.twitter.com')
-    if is_tweet:
-      return await self.bot.send_message(message.channel, self.get_image_links(message))
+    if 'twitter.com' in message.content:
+      for link in self.get_image_links(message):
+        await self.bot.send_message(message.channel, link)
 
   def get_image_links(self, message):
-    return self.api.get_status(938188434195341313).text
+    url = re.search("twitter.com\/\w+\/status\/\d+", message.content).group()
+    id = url.split('/')[-1]
+    return self.api.get_status(id).text
 
 def setup(bot):
     bot.add_cog(Twitter(bot))
