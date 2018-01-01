@@ -8,6 +8,7 @@ class Simple:
 
   def __init__(self, bot):
     self.bot = bot
+    print "loaded Simple"
 
   @simple.command()
   async def choke(self, ctx, target):
