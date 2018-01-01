@@ -16,7 +16,7 @@ class Twitter:
     is_tweet = message.content.startswith('https://twitter.com') or \
              message.content.startswith('https://www.twitter.com')
     if is_tweet:
-      return await self.bot.send_message(self.get_image_links(message))
+      return await self.bot.say(self.get_image_links(message))
 
   def get_image_links(self, message):
     return self.api.get_status(938188434195341313).text
