@@ -27,7 +27,7 @@ class Twitter:
      
   def get_tweet(self, message):
     url = re.search("twitter.com\/\w+\/status\/\d+", message.content).group()
-    return self.api.get_status(url.split('/')[-1])
+    return self.api.get_status(url.split('/')[-1], tweet_mode='extended')
 
   def get_media_links(self, tweet):
     try:
@@ -44,9 +44,6 @@ class Twitter:
       return quote + tweet.quoted_status['id_str']
     else:
       return ''
-
-  def get_tco_tweet(self, tweet):
-    url = re.search
 
 def setup(bot):
     bot.add_cog(Twitter(bot))
