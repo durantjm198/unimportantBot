@@ -35,7 +35,6 @@ class Twitter:
       return ' '.join([link for link in links]) if len(links) > 1 else ''
     except:
       print("Exception caught! ", sys.exc_info()[0])
-      print(tweet.entities['media'])
       return ''
 
   def get_quote(self, tweet):
