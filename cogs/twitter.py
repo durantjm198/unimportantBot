@@ -16,11 +16,12 @@ class Twitter:
     if 'twitter.com' in message.content:
       await self.bot.send_message(message.channel, self.process_tweet(message))
 
-  def process_tweet(self, message)
+  def process_tweet(self, message):
     tweet = self.get_tweet(message)
     quote = self.get_quote(tweet)
     links = self.get_media_links(tweet)
-    return ''
+    if quote || links
+      return quote + '\n' + links
      
   def get_tweet(self, message):
     url = re.search("twitter.com\/\w+\/status\/\d+", message.content).group()
