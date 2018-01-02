@@ -20,6 +20,7 @@ class Twitter:
     tweet = self.get_tweet(message)
     quote = self.get_quote(tweet)
     links = self.get_media_links(tweet)
+    puts links
     if quote or links:
       return quote + '\n' + links
      
