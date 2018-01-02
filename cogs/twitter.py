@@ -35,7 +35,7 @@ class Twitter:
     quote = "Link: \n"
     if tweet.is_quote_status:
       return quote + str(tweet.quoted_status['id'])
-    elif tweet.entities['urls'][0]
+    elif tweet.entities['urls'][0]:
       return quote + tweet.entities['urls'][0]['url']
     else:
       return ''
