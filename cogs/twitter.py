@@ -34,7 +34,7 @@ class Twitter:
   def get_quote(self, tweet):
     if tweet['is_quote_status']:
       return "Quoted tweet: \n\"" + tweet['quoted_status']['text'] + "\""
-    else
+    else:
       return ''
 
 def setup(bot):
