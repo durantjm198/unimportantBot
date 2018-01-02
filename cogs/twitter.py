@@ -33,7 +33,8 @@ class Twitter:
 
   def get_quote(self, tweet):
     if tweet.is_quote_status:
-      return "Quoted tweet: \nhttps://twitter.com/status/" + tweet.quoted_status['id']
+      quote = "Quoted tweet: \nhttps://twitter.com/status/"
+      return quote + str(tweet.quoted_status['id'])
     else:
       return ''
 
