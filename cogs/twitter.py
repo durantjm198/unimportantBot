@@ -14,18 +14,27 @@ class Twitter:
 
   async def on_message(self, message):
     if 'twitter.com' in message.content:
-      links = self.get_image_links(message)
-      if len(links) > 1:
-        str = ' '.join([link for link in links])
-        await self.bot.send_message(message.channel, str)
+      await self.bot.send_message(message.channel, self.process_tweet(message))
 
+  def process_tweet(self, message)
+    tweet = self.get_tweet(message)
+    quote = self.get_quote(tweet)
+    links = self.get_media_links(tweet)
+    return ''
+     
   def get_tweet(self, message):
     url = re.search("twitter.com\/\w+\/status\/\d+", message.content).group()
     return self.api.get_status(url.split('/')[-1])
 
-  def get_image_links(self, message):
-    tweet = self.get_tweet(message)
-    return [med['media_url'] for med in tweet.extended_entities['media']]
+  def get_media_links(self, tweet):
+    links = [med['media_url'] for med in tweet.extended_entities['media']]
+    return ' '.join([link for link in links]) if len(links) > 1 else ''
+
+  def get_quote(self, tweet):
+    if tweet['is_quote_status']:
+      return "Quoted tweet: \n\"" + tweet['quoted_status']['text'] + "\""
+    else
+      return ''
 
 def setup(bot):
     bot.add_cog(Twitter(bot))
