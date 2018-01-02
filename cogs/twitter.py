@@ -16,8 +16,8 @@ class Twitter:
     if 'twitter.com' in message.content:
       links = self.get_image_links(message)
       if len(links) > 1:
-        for link in links:
-          await self.bot.send_message(message.channel, link)
+        str = ' '.join([link for link in links])
+        await self.bot.send_message(message.channel, str)
 
   def get_tweet(self, message):
     url = re.search("twitter.com\/\w+\/status\/\d+", message.content).group()
