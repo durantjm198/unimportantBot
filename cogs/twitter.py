@@ -32,8 +32,8 @@ class Twitter:
     return ' '.join([link for link in links]) if len(links) > 1 else ''
 
   def get_quote(self, tweet):
-    if tweet['is_quote_status']:
-      return "Quoted tweet: \n\"" + tweet['quoted_status']['text'] + "\""
+    if tweet.is_quote_status:
+      return "Quoted tweet: \nhttps://twitter.com/status/" + tweet.quoted_status['id']
     else:
       return ''
 
