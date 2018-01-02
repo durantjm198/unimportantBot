@@ -35,11 +35,9 @@ class Twitter:
       return ''
 
   def get_quote(self, tweet):
-    quote = "Link: \n"
+    quote = "Quoted tweet: https://twitter.com/status/"
     if tweet.is_quote_status:
       return quote + str(tweet.quoted_status['id'])
-    elif tweet.entities['urls'][0]:
-      return quote + tweet.entities['urls'][0]['url']
     else:
       return ''
 
