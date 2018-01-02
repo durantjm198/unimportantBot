@@ -35,12 +35,13 @@ class Twitter:
       return ' '.join([link for link in links]) if len(links) > 1 else ''
     except:
       print("Exception caught! ", sys.exc_info()[0])
+      print("Tweet: " + tweet)
       return ''
 
   def get_quote(self, tweet):
     quote = "Quoted tweet: https://twitter.com/statuses/"
     if tweet.is_quote_status:
-      return quote + str(tweet.quoted_status['id'])
+      return quote + tweet.quoted_status['id_str']
     else:
       return ''
 
