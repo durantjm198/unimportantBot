@@ -3,6 +3,7 @@ import asyncio
 import discord
 import tweepy
 import re
+import sys
 
 # Twitter.
 class Twitter:
