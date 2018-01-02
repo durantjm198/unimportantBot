@@ -32,11 +32,16 @@ class Twitter:
     return ' '.join([link for link in links]) if len(links) > 1 else ''
 
   def get_quote(self, tweet):
+    quote = "Link: \n"
     if tweet.is_quote_status:
-      quote = "Quoted tweet: \nhttps://twitter.com/status/"
       return quote + str(tweet.quoted_status['id'])
+    elif tweet.entities['urls'][0]
+      return quote + tweet.entities['urls'][0]['url']
     else:
       return ''
+
+  def get_tco_tweet(self, tweet):
+    url = re.search
 
 def setup(bot):
     bot.add_cog(Twitter(bot))
