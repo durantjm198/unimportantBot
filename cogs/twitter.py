@@ -28,10 +28,11 @@ class Twitter:
     return self.api.get_status(url.split('/')[-1])
 
   def get_media_links(self, tweet):
-    if not tweet.extended_entities:
+    try:
+      links = [med['media_url'] for med in tweet.extended_entities['media']]
+      return ' '.join([link for link in links]) if len(links) > 1 else ''
+    except:
       return ''
-    links = [med['media_url'] for med in tweet.extended_entities['media']]
-    return ' '.join([link for link in links]) if len(links) > 1 else ''
 
   def get_quote(self, tweet):
     quote = "Link: \n"
