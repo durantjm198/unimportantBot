@@ -28,6 +28,8 @@ class Twitter:
     return self.api.get_status(url.split('/')[-1])
 
   def get_media_links(self, tweet):
+    if !tweet.extended_entities:
+      return ''
     links = [med['media_url'] for med in tweet.extended_entities['media']]
     return ' '.join([link for link in links]) if len(links) > 1 else ''
 
