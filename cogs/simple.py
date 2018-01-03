@@ -43,7 +43,7 @@ class Simple:
     ]
 
     # TODO: @ the user
-    return await self.bot.say(rng.choice(eight_ball_sayings))
+    return await self.bot.say(random.choice(eight_ball_sayings))
 
   @commands.command(pass_context=True)
   async def coin(self, ctx):
