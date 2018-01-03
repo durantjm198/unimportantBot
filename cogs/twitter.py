@@ -21,7 +21,7 @@ class Twitter:
     quote = self.get_quote(tweet)
     links = self.get_media_links(tweet)
     if quote or links:
-      return quote + '\n' + links
+      return quote + '\n' + ' '.join(links[1:])
      
   def get_tweet(self, message):
     url = re.search("twitter.com\/\w+\/status\/\d+", message.content).group()
@@ -30,7 +30,7 @@ class Twitter:
   def get_media_links(self, tweet):
     try:
       links = [med['media_url'] for med in tweet.extended_entities['media']]
-      return ' '.join([link for link in links]) if len(links) > 1 else ''
+      return [link for link in links] if len(links) > 1 else ''
     except:
       return ''
 
