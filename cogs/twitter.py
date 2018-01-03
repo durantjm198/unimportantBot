@@ -3,6 +3,7 @@ import asyncio
 import discord
 import tweepy
 import re
+import sys
 
 # Twitter.
 class Twitter:
@@ -20,29 +21,28 @@ class Twitter:
     tweet = self.get_tweet(message)
     quote = self.get_quote(tweet)
     links = self.get_media_links(tweet)
+    print(links)
     if quote or links:
       return quote + '\n' + ' '.join(links[1:])
      
   def get_tweet(self, message):
     url = re.search("twitter.com\/\w+\/status\/\d+", message.content).group()
-    return self.api.get_status(url.split('/')[-1])
+    return self.api.get_status(url.split('/')[-1], tweet_mode='extended')
 
   def get_media_links(self, tweet):
     try:
       links = [med['media_url'] for med in tweet.extended_entities['media']]
       return [link for link in links] if len(links) > 1 else ''
     except:
+      print("Exception caught! ", sys.exc_info()[0])
       return ''
 
   def get_quote(self, tweet):
     quote = "Quoted tweet: https://twitter.com/statuses/"
     if tweet.is_quote_status:
-      return quote + str(tweet.quoted_status['id'])
+      return quote + tweet.quoted_status['id_str']
     else:
       return ''
-
-  def get_tco_tweet(self, tweet):
-    url = re.search
 
 def setup(bot):
     bot.add_cog(Twitter(bot))
