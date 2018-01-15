@@ -33,6 +33,7 @@ class UnimportantBot(Bot):
         return
       if '69' in message.content:
         nice = next((e for emojis in server.emojis if x.name == 'nice'), None)
+        print(nice)
         await self.add_reaction(message, nice)
       await self.process_commands(message)
 
