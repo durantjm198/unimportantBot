@@ -28,8 +28,12 @@ class UnimportantBot(Bot):
     super().run(self.token)
 
     async def on_message(self, message):
+      server = message.server
       if message.author.bot:
         return
+      if '69' in message.content:
+        nice = next((e for emojis in server.emojis if x.name == 'nice'), None)
+        await self.add_reaction(message, nice)
       await self.process_commands(message)
 
 bot = UnimportantBot()
