@@ -10,7 +10,7 @@ extensions = (
   'cogs.twitter',
 )
 
-class UnimportantBot(Bot):
+class UnimportantBot(commands.Bot):
   def __init__(self):
     super().__init__(command_prefix = '!')
     self.token = config.token
