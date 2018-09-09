@@ -1,9 +1,9 @@
-import discord
-from discord.ext.commands import Bot
 import asyncio
+import config
+import discord
+from discord.ext import commands
 import sys
 import traceback
-import config
 
 extensions = (
   'cogs.simple',
@@ -31,10 +31,6 @@ class UnimportantBot(Bot):
       server = message.server
       if message.author.bot:
         return
-      if '69' in message.content:
-        nice = next((e for emojis in server.emojis if x.name == 'nice'), None)
-        print(nice)
-        await self.add_reaction(message, nice)
       await self.process_commands(message)
 
 bot = UnimportantBot()

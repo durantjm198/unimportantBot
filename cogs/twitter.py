@@ -1,9 +1,10 @@
-from discord.ext import commands
 import asyncio
 import discord
-import tweepy
 import re
 import sys
+import tweepy
+
+from discord.ext import commands
 
 # Twitter.
 class Twitter:
@@ -41,7 +42,7 @@ class Twitter:
   def get_quote(self, tweet):
     quote = "Quoted tweet: https://twitter.com/statuses/"
     if tweet.is_quote_status:
-      return quote + tweet.quoted_status['id_str']
+      return quote + tweet.quoted_status.id_str
     else:
       return ''
 
