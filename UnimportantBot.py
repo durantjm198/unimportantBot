@@ -29,7 +29,7 @@ class UnimportantBot(commands.Bot):
 
     async def on_message(self, message):
       server = message.server
-      if message.author.bot || '!nobot' in message.content:
+      if message.author.bot or '!nobot' in message.content:
         return
       await self.process_commands(message)
 
