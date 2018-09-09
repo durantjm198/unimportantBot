@@ -15,7 +15,6 @@ class Twitter:
     self.api = tweepy.API(auth)
 
   async def on_message(self, msg):
-    if '!nobot' not in msg.content:
       if 'twitter.com' in msg.content:
         await self.bot.send_message(msg.channel, self.process_tweet(msg))
 
