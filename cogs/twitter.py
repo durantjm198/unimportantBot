@@ -28,7 +28,7 @@ class Twitter:
       return quote + '\n' + ' '.join(links[1:])
      
   def get_tweet(self, message):
-    url = re.search("twitter.com\/\w+\/status\/\d+", message.content).group()
+    url = re.search("twitter.com\/\w+\/status(es)*\/\d+", message.content).group()
     return self.api.get_status(url.split('/')[-1], tweet_mode='extended')
 
   def get_media_links(self, tweet):
