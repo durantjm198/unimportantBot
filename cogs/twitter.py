@@ -13,9 +13,10 @@ class Twitter:
     auth.set_access_token(bot.tw_access_token, bot.tw_access_token_secret)
     self.api = tweepy.API(auth)
 
-  async def on_message(self, message):
-    if 'twitter.com' in message.content:
-      await self.bot.send_message(message.channel, self.process_tweet(message))
+  async def on_message(self, msg):
+    if '!nobot' not in msg.content:
+      if 'twitter.com' in msg.content:
+        await self.bot.send_message(msg.channel, self.process_tweet(msg))
 
   def process_tweet(self, message):
     tweet = self.get_tweet(message)
