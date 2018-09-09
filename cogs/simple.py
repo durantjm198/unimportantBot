@@ -99,7 +99,10 @@ class Simple:
       "#alexhateboard" : 316399024473374722
     }
     channel = self.bot.get_channel(str(channels[chan_name]))
-    return await self.bot.send_message(channel, ctx.message.author.name + " says:\n" + msg)
+    if "!topic-" in message.content:
+      topic = message.content.split(' ')[1][7:]
+    return await self.bot.send_message(channel, ctx.message.author.name + \
+      " says about " + topic + ":\n" + msg)
 
 def setup(bot):
     bot.add_cog(Simple(bot))
