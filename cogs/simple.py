@@ -51,10 +51,23 @@ class Simple:
     flip = "tails" if n == 0 else "heads"
     return await self.bot.say("You flipped " + flip + "!")
 
-  # TODO: roll 2d20
   @commands.command(pass_context=True)
   async def roll(self, ctx, n):
-    return await self.bot.say(random.randint(1, int(n)))
+    if 'd' in n:
+      dice = n.split('d')
+      string = ''
+      total = 0
+      for i in range(int(dice[0])):
+        roll = random.randint(1, int(dice[1]))
+        total += roll
+        if i < int(dice[0]) - 1:
+          string += str(roll) + ' + '
+        else:
+          string += str(roll)
+      await self.bot.say(string)
+      return await self.bot.say('Total: ' + str(total))
+    else:
+      return await self.bot.say(random.randint(1, int(n)))
 
   @commands.command(pass_context=True)
   async def roll_eldritch(self, ctx, n):
@@ -68,8 +81,25 @@ class Simple:
         result += str(roll) + " "
         if roll >= 5:
             successes += 1
-    await bot.say(result)
+    await self.bot.say(result)
     return await self.bot.say(str(successes) + " successes!")
+
+  @commands.command(pass_context=True)
+  async def send(self, ctx, chan_name, msg):
+    channels = { 
+      "#anime" : 237776682100981760,
+      "#bored_games" : 333128096733724672,
+      "#electrogames" : 237776811021303808,
+      "#movies" : 237776499267207169,
+      "#music" : 237776707052896257,
+      "#sports" : 238837234172690432,
+      "#television" : 237776634822918144,
+      "#off-topic" : 237775894578462720,
+      "#politics" : 251567712654852096,
+      "#alexhateboard" : 316399024473374722
+    }
+    channel = self.bot.get_channel(str(channels[chan_name]))
+    return await self.bot.send_message(channel, ctx.message.author.name + " says:\n" + msg)
 
 def setup(bot):
     bot.add_cog(Simple(bot))
