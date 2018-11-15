@@ -31,6 +31,9 @@ class UnimportantBot(commands.Bot):
       server = message.server
       if message.author.bot or '!nobot' in message.content:
         return
+      if '69' in message.content:
+          nice = next((e for emojis in server.emojis if e.name == 'nice'), None)
+          await self.add_reaction(message, nice)
       await self.process_commands(message)
 
 bot = UnimportantBot()
