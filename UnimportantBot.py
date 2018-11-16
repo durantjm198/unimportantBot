@@ -27,13 +27,13 @@ class UnimportantBot(commands.Bot):
         traceback.print_exc()
     super().run(self.token)
 
-    async def on_message(self, message):
-      server = message.server
-      if message.author.bot or '!nobot' in message.content:
-        return
-      if '69' in message.content:
-        nice = 'nice:512799663007596562'
-        await self.add_reaction(message, nice)
-      await self.process_commands(message)
+  async def on_message(self, message):
+    server = message.server
+    if message.author.bot or '!nobot' in message.content:
+      return
+    if '69' in message.content:
+      nice = next(e for e in server.emojis if e.name == 'nice', None)
+      await self.add_reaction(message, nice)
+    await self.process_commands(message)
 
 bot = UnimportantBot()
